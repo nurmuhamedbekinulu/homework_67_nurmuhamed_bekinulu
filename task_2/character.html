@@ -5,6 +5,35 @@
     <title>Character details</title>
 </head>
 <body>
+    <div id="details"></div>
     
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let charId = urlParams.get('id');
+
+        function loadCharacter() {
+            fetch(url='https://rickandmortyapi.com/api/character/' + charId, data={
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    let characterDetails = document.getElementById('details');
+                    let charName = '<h1>' + data.name + '</h1>';
+                    let charImage = "<img src='" + data.image + "'>";
+                    let charSpecies = "<p><strong>Species:</strong> " + data.species + "</p>";
+                    let charGender = "<p><strong>Gender:</strong> " + data.gender + "</p>";
+                    let charStatus = "<p><strong>Status:</strong> " + data.status + "</p>";
+                    let charOrigin = "<p><strong>Origin:</strong> " + data.origin.name + "</p>";
+                    let charLocation = "<p><strong>Location:</strong> " + data.location.name + "</p>";
+
+                    characterDetails.innerHTML = charName + charImage + charSpecies + charGender + charStatus + charOrigin + charLocation;
+                })
+        }
+
+        window.addEventListener('load', function() {
+            loadCharacter();
+        });
+    </script>
 </body>
 </html>
