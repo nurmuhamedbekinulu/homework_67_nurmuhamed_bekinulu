@@ -18,9 +18,13 @@
     z-index: 9999;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-#add-item-btn{
+#add-item-btn, #close-btn{
     font-size: 20px;
     padding: 5px 10px;
     border-radius: 20%;
 }
-
+#close-btn{
+    position: relative;
+    left: 74%;
+    margin-top: 10px;
+}

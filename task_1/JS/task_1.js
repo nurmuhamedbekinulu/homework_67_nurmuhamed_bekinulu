@@ -2,6 +2,7 @@ const divCont = document.getElementById("container");
 const divAlert = document.createElement("div");
 const addButton = document.getElementById("add-item-btn");
 const closeButton = document.getElementById("close-btn");
+const TIMEOUT = 5000;
 
 function onButtonClick() { 
     divAlert.innerHTML = '<p>Какое-то очень важное уведомление!  ˁ(🔲-🔲ᐟ)ˀ</p><input id="close-btn" class="close-btn" type="button" value="Закрыть">';
@@ -19,7 +20,7 @@ function onButtonClick() {
     const closeTimer = setTimeout(function() {
         divAlert.remove();
         document.body.style.backgroundColor = "white";
-        }, 5000);    
+        }, TIMEOUT);    
 };
 
 addButton.addEventListener('click', onButtonClick);
