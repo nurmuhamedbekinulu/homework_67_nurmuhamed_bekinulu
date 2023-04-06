@@ -5,6 +5,46 @@
     <title>Rick & Morty</title>
 </head>
 <body>
+    <div id="response"></div>
+
+    <script type="application/javascript" src="./JS/main.js"></script>
+    <script>
+        function characterCard(character) {
+            let card = document.createElement('div');
+            let name = document.createElement('h1');
+            let image = document.createElement('img');
+
+            card.classList.add('char_card');
+            name.textContent = character.name;
+            image.src = character.image;
+            card.appendChild(name);
+            card.appendChild(image);
+            card.addEventListener('click', function() {
+                window.location.href = 'character.html?id=' + character.id;
+            });
+            return card;
+        }
+
+        function loadCharacters() {
+            fetch(url='https://rickandmortyapi.com/api/character', data={
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    let characters = data.results;
+                    let charactersList = document.getElementById('response');
+
+                    characters.forEach(character => {
+                        let card = characterCard(character);
+                        charactersList.appendChild(card);
+                    });
+                })
+        }
+
+        window.addEventListener('load', function() {
+            loadCharacters();
+        });
+    </script>
     
 </body>
 </html>
